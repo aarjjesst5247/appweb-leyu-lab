@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>米兰体育app · 运动生活新叙事</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif;
+            background: #f5f9fc;
+            color: #1a2b34;
+            line-height: 1.6;
+            padding: 0 18px;
+        }
+
+        .page {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 32px 0 48px;
+        }
+
+        /* hero — 杂志横幅 */
+        .hero {
+            background: linear-gradient(145deg, #0f2a30 0%, #1c4b52 100%);
+            border-radius: 28px;
+            padding: 48px 36px 40px;
+            margin-bottom: 40px;
+            color: #e0f2f0;
+            box-shadow: 0 12px 28px -8px rgba(12, 52, 58, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle at 30% 40%, rgba(90, 190, 170, 0.12), transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            max-width: 700px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 span {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 0.4px;
+            margin-top: 12px;
+            color: #bcd9d4;
+            opacity: 0.85;
+        }
+
+        .hero .sub {
+            margin-top: 24px;
+            font-size: 1rem;
+            max-width: 560px;
+            color: #c8e3de;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 16px 20px;
+            border-radius: 18px;
+            border-left: 4px solid #46b5a0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 三栏网格卡片 — 自然介绍 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin: 16px 0 44px;
+        }
+
+        @media (min-width: 600px) {
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 960px) {
+            .feature-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 28px 24px 30px;
+            box-shadow: 0 4px 14px rgba(0, 30, 35, 0.06);
+            transition: transform 0.2s ease, box-shadow 0.25s;
+            border: 1px solid rgba(60, 140, 130, 0.08);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(21, 79, 79, 0.12);
+        }
+
+        .card-icon {
+            display: inline-block;
+            width: 44px;
+            height: 44px;
+            background: #d3ebe6;
+            border-radius: 16px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #1b5b5a;
+            background: #d6efea;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #0d3539;
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        .card p {
+            color: #2c464b;
+            font-size: 0.96rem;
+            flex: 1;
+            margin-bottom: 12px;
+        }
+
+        .card .tag {
+            font-size: 0.8rem;
+            color: #3d7b78;
+            background: #e2f3f0;
+            padding: 4px 12px;
+            border-radius: 40px;
+            display: inline-block;
+            align-self: flex-start;
+            letter-spacing: 0.3px;
+        }
+
+        /* 背景说明 — 杂志式长段落 */
+        .context-block {
+            background: #ecf5f3;
+            padding: 32px 28px;
+            border-radius: 24px;
+            margin: 36px 0 40px;
+            border-left: 6px solid #2e8d83;
+        }
+
+        .context-block h2 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: #0a3136;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .context-block p {
+            color: #1a3c40;
+            max-width: 800px;
+            margin-bottom: 14px;
+            font-size: 0.98rem;
+        }
+
+        .context-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight {
+            color: #0d594f;
+            font-weight: 500;
+            background: linear-gradient(to right, rgba(50, 140, 130, 0.08), transparent);
+        }
+
+        /* 页尾提示 —— 访问引导 */
+        .footer-note {
+            margin-top: 44px;
+            padding: 28px 20px 24px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 2px 14px rgba(10, 46, 48, 0.04);
+            text-align: center;
+            border: 1px solid #d5e6e2;
+        }
+
+        .footer-note p {
+            font-size: 1.02rem;
+            color: #1f4247;
+            margin-bottom: 4px;
+        }
+
+        .footer-note .link-sentence {
+            font-size: 1.1rem;
+            margin-top: 10px;
+            background: #e9f5f2;
+            padding: 12px 24px;
+            border-radius: 60px;
+            display: inline-block;
+        }
+
+        .footer-note a {
+            color: #14665b;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .footer-note a:hover {
+            border-bottom-color: #14665b;
+        }
+
+        /* 常见问题摘要 (FAQ mini) */
+        .faq-mini {
+            margin: 38px 0 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 18px;
+            background: #f0f7f5;
+            padding: 20px 24px;
+            border-radius: 22px;
+        }
+
+        .faq-item {
+            flex: 1 1 180px;
+            padding: 6px 0;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-size: 0.9rem;
+            color: #124e4a;
+            margin-bottom: 4px;
+        }
+
+        .faq-item span {
+            font-size: 0.85rem;
+            color: #2d5d5a;
+        }
+
+        .footer-legal {
+            margin-top: 40px;
+            font-size: 0.75rem;
+            color: #587d7b;
+            text-align: center;
+            border-top: 1px solid #cddeda;
+            padding-top: 22px;
+            letter-spacing: 0.2px;
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .hero {
+                padding: 36px 20px 32px;
+            }
+            .context-block {
+                padding: 24px 18px;
+            }
+            .card {
+                padding: 22px 18px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- 杂志横幅 hero -->
+        <section class="hero">
+            <h1>
+                在节奏里找到自己
+                <span>米兰体育app · 日常运动的另一种表达</span>
+            </h1>
+            <div class="sub">
+                不是所有运动都需要竞技感。跑起来，游出去，或者只是拉伸十分钟——米兰体育app陪你完成每一次微小的坚持。
+            </div>
+        </section>
+
+        <!-- 三段自然介绍：网格卡片 -->
+        <div class="feature-grid">
+            <div class="card">
+                <div class="card-icon">🏃</div>
+                <h3>城市漫跑</h3>
+                <p>没有配速焦虑，没有路线模板。打开记录，跑过熟悉的街角或陌生的公园，你的节奏由你自己定义。</p>
+                <span class="tag">轻松开跑</span>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏊</div>
+                <h3>水中时刻</h3>
+                <p>游泳、水中行走、甚至只是漂浮片刻——水的浮力让人松弛。米兰体育app支持多种水上活动记录，关注你的每次划水与呼吸。</p>
+                <span class="tag">温和有氧</span>
+            </div>
+            <div class="card">
+                <div class="card-icon">🧘</div>
+                <h3>拉伸与恢复</h3>
+                <p>运动后的整理同样重要。跟随引导做一次完整的肌肉拉伸，或利用碎片时间放松肩颈。恢复，是为了走更远的路。</p>
+                <span class="tag">身体友好</span>
+            </div>
+        </div>
+
+        <!-- 背景说明：杂志式深度段落 -->
+        <div class="context-block">
+            <h2>运动，不需要宏大理由</h2>
+            <p>
+                很多人总在等一个“完美的开始”——等办妥了健身卡，等买齐了装备，等有了整块时间。但真实的生活里，运动的契机往往很小：饭后下楼散步十五分钟，周末上午的一场随性骑行，睡前五分钟的简单拉伸。这些看起来不够“正式”的活动，恰恰是很多人保持日常活力的真实方式。
+            </p>
+            <p>
+                <span class="highlight">米兰体育app</span> 的设计思路正是来自这种日常语境。它不强调突破极限或创造纪录，而是更关注你是否愿意动起来、动得舒不舒服。从晨间的温和唤醒，到傍晚的放松流汗，再到睡前的身体扫描——场景覆盖生活缝隙，不制造压力，只提供陪伴。
+            </p>
+            <p>
+                运动习惯不该是负担，而是一种可持续的自我照顾。我们见过太多人因为一次高强度的训练受伤或放弃，也见过太多人因为少了记录与反馈而慢慢停下。比起“练得狠”，<span class="highlight">米兰体育app</span> 更想帮你“练得久”。通过灵活的记录方式和友好的视觉反馈，让你在不知不觉中，把运动变成像喝水一样自然的事。
+            </p>
+        </div>
+
+        <!-- FAQ 摘要 + 场景提示 -->
+        <div class="faq-mini">
+            <div class="faq-item">
+                <strong>适合初学者吗？</strong>
+                <span>内容按强度分级，入门友好，动作都有文字与图解说明。</span>
+            </div>
+            <div class="faq-item">
+                <strong>需要额外设备吗？</strong>
+                <span>绝大部分场景徒手或利用自重完成，户外运动建议穿合适的鞋。</span>
+            </div>
+            <div class="faq-item">
+                <strong>数据记录方式</strong>
+                <span>可选自动感应或手动输入，尊重个人习惯，不强制开启定位。</span>
+            </div>
+        </div>
+
+        <!-- 页尾访问提示 —— 嵌入链接的自然句子 -->
+        <div class="footer-note">
+            <p>如果你也在寻找一种更贴近生活节奏的运动方式，不妨从「日常五分钟」开始。</p>
+            <div class="link-sentence">
+                了解更多关于 <a href="https://m-app-milan.com" target="_blank" rel="noopener noreferrer">米兰体育app</a> 的功能与使用故事。
+            </div>
+        </div>
+
+        <div class="footer-legal">
+            内容仅供参考 · 运动前请根据自身状况合理评估 · 保持轻松，循序渐进
+        </div>
+
+    </div>
+</body>
+</html>
